@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <import type="android.text.InputType"/>
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null"
+        tools:context=".SubmitCreditCardActivity">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            app:elevation="0dp"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                app:navigationIcon="@drawable/ic_close_gray_24dp"
+                />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            >
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card_blue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginEnd="32dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="12dp"
+                app:cardPreventCornerOverlap="false"
+                android:alpha="0"
+                >
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="24dp"
+                    android:background="@drawable/blue_gradient"
+                    >
+
+                    <ru.adonixis.submitcreditcardflow.PTMonoTextView
+                        android:id="@+id/text_card_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:textSize="16sp"
+                        android:textColor="@{inputEditCardNumber.text.toString().isEmpty() ? @color/translucent_white : @color/light_gray}"
+                        android:fontFamily="monospace"
+                        android:typeface="monospace"
+                        android:textAllCaps="true"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:text="@{inputEditCardNumber.text.toString().isEmpty() ? @string/label_card_number : inputEditCardNumber.text}"
+                        tools:text="@string/label_card_number"
+                        />
+
+                    <ru.adonixis.submitcreditcardflow.PTMonoTextView
+                        android:id="@+id/text_expired_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintTop_toBottomOf="@+id/text_card_number"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toLeftOf="@+id/text_cvv_code"
+                        android:textSize="14sp"
+                        android:textColor="@{inputEditExpiredDate.text.toString().isEmpty() ? @color/translucent_white : @color/light_gray}"
+                        android:fontFamily="monospace"
+                        android:typeface="monospace"
+                        android:textAllCaps="true"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:text="@{inputEditExpiredDate.text.toString().isEmpty() ? @string/label_expired_date : inputEditExpiredDate.text}"
+                        tools:text="@string/label_expired_date"
+                        />
+
+                    <ru.adonixis.submitcreditcardflow.PTMonoTextView
+                        android:id="@+id/text_card_holder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/text_expired_date"
+                        android:textSize="14sp"
+                        android:textColor="@{inputEditCardHolder.text.toString().isEmpty() ? @color/translucent_white : @color/light_gray}"
+                        android:fontFamily="monospace"
+                        android:typeface="monospace"
+                        android:textAllCaps="true"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:text="@{inputEditCardHolder.text.toString().isEmpty() ? @string/label_card_holder : inputEditCardHolder.text}"
+                        tools:text="@string/label_card_holder"
+                        />
+
+                    <ru.adonixis.submitcreditcardflow.PTMonoTextView
+                        android:id="@+id/text_cvv_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintTop_toTopOf="@+id/text_expired_date"
+                        app:layout_constraintBottom_toBottomOf="@+id/text_expired_date"
+                        app:layout_constraintRight_toLeftOf="@+id/icon_help_blue"
+                        android:textSize="14sp"
+                        android:textColor="@{inputEditCvvCode.text.toString().isEmpty() ? @color/translucent_white : @color/light_gray}"
+                        android:fontFamily="monospace"
+                        android:typeface="monospace"
+                        android:textAllCaps="true"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:inputType="@{inputEditCvvCode.text.toString().isEmpty() ? (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS) : (InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD)}"
+                        android:text="@{inputEditCvvCode.text.toString().isEmpty() ? @string/label_cvv_code : inputEditCvvCode.text}"
+                        tools:text="@string/label_cvv_code"
+                        />
+
+                    <ImageView
+                        android:id="@+id/icon_help_blue"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@+id/text_expired_date"
+                        app:layout_constraintTop_toTopOf="@+id/text_expired_date"
+                        app:srcCompat="@drawable/ic_help_translucent_24dp"
+                        />
+
+                </android.support.constraint.ConstraintLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card_gray"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginEnd="32dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="12dp"
+                app:cardPreventCornerOverlap="false"
+                android:alpha="1"
+                >
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="24dp"
+                    android:background="@color/dark_gray"
+                    >
+
+                    <ru.adonixis.submitcreditcardflow.PTMonoTextView
+                        android:id="@+id/label_card_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:textSize="16sp"
+                        android:textColor="@color/light_gray"
+                        android:fontFamily="monospace"
+                        android:typeface="monospace"
+                        android:textAllCaps="true"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:text="@string/label_card_number"
+                        />
+
+                    <ru.adonixis.submitcreditcardflow.PTMonoTextView
+                        android:id="@+id/label_expired_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintTop_toBottomOf="@+id/label_card_number"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toLeftOf="@+id/label_cvv_code"
+                        android:textSize="14sp"
+                        android:textColor="@color/translucent_white"
+                        android:fontFamily="monospace"
+                        android:typeface="monospace"
+                        android:textAllCaps="true"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:text="@string/label_expired_date"
+                        />
+
+                    <ru.adonixis.submitcreditcardflow.PTMonoTextView
+                        android:id="@+id/label_card_holder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/label_expired_date"
+                        android:textSize="14sp"
+                        android:textColor="@color/translucent_white"
+                        android:fontFamily="monospace"
+                        android:typeface="monospace"
+                        android:textAllCaps="true"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:text="@string/label_card_holder"
+                        />
+
+                    <ru.adonixis.submitcreditcardflow.PTMonoTextView
+                        android:id="@+id/label_cvv_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintTop_toTopOf="@+id/label_expired_date"
+                        app:layout_constraintBottom_toBottomOf="@+id/label_expired_date"
+                        app:layout_constraintRight_toLeftOf="@+id/icon_help_gray"
+                        android:textSize="14sp"
+                        android:textColor="@color/translucent_white"
+                        android:fontFamily="monospace"
+                        android:typeface="monospace"
+                        android:textAllCaps="true"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:text="@string/label_cvv_code"
+                        />
+
+                    <ImageView
+                        android:id="@+id/icon_help_gray"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@+id/label_expired_date"
+                        app:layout_constraintTop_toTopOf="@+id/label_expired_date"
+                        app:srcCompat="@drawable/ic_help_translucent_24dp"
+                        />
+
+                </android.support.constraint.ConstraintLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <ru.adonixis.submitcreditcardflow.WrapContentHeightViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/card_gray"
+                android:layout_marginTop="16dp"
+                >
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_card_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    >
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/input_edit_card_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:inputType="phone"
+                        android:imeOptions="actionNext"
+                        android:hint="@string/hint_card_number"
+                        tools:text="4242 4242 4242 4242"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_expired_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    >
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/input_edit_expired_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:inputType="date"
+                        android:imeOptions="actionNext"
+                        android:hint="@string/hint_expired_date"
+                        android:maxLength="5"
+                        tools:text="12/19"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_card_holder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    >
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/input_edit_card_holder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:inputType="textPersonName|textCapCharacters|textNoSuggestions"
+                        android:imeOptions="actionNext"
+                        android:hint="@string/hint_card_holder"
+                        tools:text="12/19"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/input_layout_cvv_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    >
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/input_edit_cvv_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:inputType="numberPassword"
+                        android:imeOptions="actionDone"
+                        android:hint="@string/hint_cvv_code"
+                        android:maxLength="4"
+                        tools:text="12/19"
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <Space
+                    android:id="@+id/space"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </ru.adonixis.submitcreditcardflow.WrapContentHeightViewPager>
+
+            <ProgressBar
+                android:id="@+id/progress_circle"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_below="@+id/view_pager"
+                android:layout_centerHorizontal="true"
+                android:visibility="gone"
+                />
+
+            <ImageView
+                android:id="@+id/icon_lock"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_below="@+id/view_pager"
+                android:layout_marginTop="16dp"
+                android:layout_centerHorizontal="true"
+                app:srcCompat="@drawable/ic_lock_translucent_24dp"
+                />
+
+            <ProgressBar
+                android:id="@+id/progress_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="-8dp"
+                android:layout_marginTop="-4dp"
+                android:progress="25"
+                style="?android:attr/progressBarStyleHorizontal"
+                />
+
+            <TextView
+                android:id="@+id/label_secure_submission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
+                android:background="@color/blue"
+                android:gravity="center"
+                android:textColor="@color/light_gray"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:text="@string/label_secure_submission"
+                android:visibility="gone"
+                />
+
+        </RelativeLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</layout>

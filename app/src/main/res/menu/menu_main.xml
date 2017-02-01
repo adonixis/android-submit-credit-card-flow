@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".SubmitCreditCardActivity">
+
+    <item
+        android:id="@+id/action_reset"
+        android:title="@string/title_action_reset"
+        android:orderInCategory="1"
+        android:icon="@drawable/ic_reset_blue_24dp"
+        app:showAsAction="always"
+        />
+
+</menu>
